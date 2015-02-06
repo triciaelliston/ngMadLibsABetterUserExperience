@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="myAppUseController">
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+	<script src="./myAppUseController.js"></script>
+	<link rel="stylesheet" href="mad-libs-app.css">
+	<title></title>
+</head>
+<body ng-controller="MyCtrl">
+	<header>
+		<h2>
+			<span class="logo-left">
+				<img src="mad-lib-happy-face.png" alt="MadLibs Logo">
+			</span>
+		</h2><h3>
+			<span class="logo-right">
+				<img src="ng-mad-libs-logo.png" alt="MadLibs Logo"><br><div class="heading">Automate This!</div>
+			</span>
+		</h3>
+	</header>
+	<section>
+		<div ng-show="!myform.submitted">
+			<form name="myInputView" novalidate ng-submit="myform.submitted = true; submit();">
+				<table>
+				<thead>Provide the following words:
+				</thead>
+				<tr>
+					<td>
+						<input type="text" name="male_name" ng-model="male_name" placeholder="Name" required>			
+					</td>
+					<td>
+						<input type="text" name="dirty_task" ng-model="dirty_task" placeholder="Dirty task" required>
+					</td>
+					<td>
+						<input type="text" name="obnoxious_celebrity" ng-model="obnoxious_celebrity" placeholder="Obnoxious Celebrity" required>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="job_title" ng-model="job_title" placeholder="Job title" required>			
+					</td>
+					<td>
+						<input type="text" name="celebrity" ng-model="celebrity" placeholder="Celebrity" required>
+					</td>
+					<td>
+						<input type="text" name="huge_number" ng-model="huge_number" placeholder="Huge number" required>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="tedious_task" ng-model="tedious_task" placeholder="Tedious task" required>			
+					</td>
+					<td>
+						<input type="text" name="useless_skill" ng-model="useless_skill" placeholder="Useless skill" required>
+					</td>
+					<td>
+						<input type="text" name="adjective" ng-model="adjective" placeholder="Adjective" required>
+					</td>
+				</tr>
+    			</table>
+    			<p class="error" ng-if="myform.submitted && myInputView.male_name.$error.required">A name is required.</p>
+    			<p class="error" ng-if="myform.submitted && myInputView.dirty_task.$error.required">A dirty task is required.</p>
+    			<p class="error" ng-if="myform.submitted && myInputView.obnoxious_celebrity.$error.required">An obnoxious celebrity is required.</p>
+
+    			<p class="error" ng-if="myform.submitted && myInputView.job_title.$error.required">A job title is required.</p>
+    			<p class="error" ng-if="myform.submitted && myInputView.celebrity.$error.required">A celebrity is required.</p>
+    			<p class="error" ng-if="myform.submitted && myInputView.huge_number.$error.required">A huge number is required.</p>
+
+    			<p class="error" ng-if="myform.submitted && myInputView.tedious_task.$error.required">A tedious_task is required.</p>
+    			<p class="error" ng-if="myform.submitted && myInputView.useless_skill.$error.required">A useless_skill is required.</p>
+    			<p class="error" ng-if="myform.submitted && myInputView.adjective.$error.required">A adjective is required.</p>
+    			<br>
+    			<input type="submit" value="Generate My Mad Lib" />
+			</form>
+		</div>
+	</section><section>
+		<div ng-show="myform.submitted">
+			<form name="myOutputView" novalidate ng-submit="myform.submitted = false; submit();">
+				<span>
+					<p>{{ male_name }} was a {{ job_title }} who loved technology.  Although he loved parts of his job, he absolutely hated {{ tedious_task }} and {{ dirty_task }}.  So, {{ male_name }} met with his life mentor {{ celebrity }} who told him to learn how to {{ useless_skill }} with Thinkful.  Thinkful didn't offer a course on {{ useless_skill }} so he studied programming instead.</p>
+					<p>What a great decision!  With his new skills, {{ male_name }} built a(n) {{adjective }} robot named {{ obnoxious_celebrity }} that not only loved {{ dirty_task }} but did it {{ huge_number }} times faster.</p>
+					<br>
+    			</span>
+				<input type="submit" value="Start Over" />
+			</form>
+		</div>
+	</section>
+</body>
+</html>
