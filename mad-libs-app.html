@@ -12,7 +12,8 @@
 			<span class="logo-left">
 				<img src="mad-lib-happy-face.png" alt="MadLibs Logo">
 			</span>
-		</h2><h3>
+		</h2>
+		<h3>
 			<span class="logo-right">
 				<img src="ng-mad-libs-logo.png" alt="MadLibs Logo"><br><div class="heading">Automate This!</div>
 			</span>
@@ -26,7 +27,7 @@
 				</thead>
 				<tr>
 					<td>
-						<input type="text" name="male_name" ng-model="male_name" placeholder="Name" required>			
+						<input type="text"  name="male_name" ng-model="male_name" placeholder="Name" required>			
 					</td>
 					<td>
 						<input type="text" name="dirty_task" ng-model="dirty_task" placeholder="Dirty task" required>
@@ -58,7 +59,34 @@
 					</td>
 				</tr>
     			</table>
-    			<p class="error" ng-if="myform.submitted && myInputView.male_name.$error.required">A name is required.</p>
+
+    			<input type="submit" value="Generate My Mad Lib" />
+			</form>
+		</div>
+
+	</section><section>
+		<div ng-show="myform.submitted 
+					&& !myInputView.male_name.$error.required
+					&& !myInputView.dirty_task.$error.required
+					&& !myInputView.obnoxious_celebrity.$error.required
+					&& !myInputView.job_title.$error.required
+					&& !myInputView.celebrity.$error.required
+					&& !myInputView.huge_number.$error.required
+					&& !myInputView.tedious_task.$error.required
+					&& !myInputView.useless_skill.$error.required
+					&& !myInputView.adjective.$error.required">
+			<form name="myOutputView" novalidate ng-submit="myform.submitted = false; submit();">
+				<span>
+					<p>{{ male_name }} was a {{ job_title }} who loved technology.  Although he loved parts of his job, he absolutely hated {{ tedious_task }} and {{ dirty_task }}.  So, {{ male_name }} met with his life mentor {{ celebrity }} who told him to learn how to {{ useless_skill }} with Thinkful.  Thinkful didn't offer a course on {{ useless_skill }} so he studied programming instead.</p>
+					<p>What a great decision!  With his new skills, {{ male_name }} built a(n) {{adjective }} robot named {{ obnoxious_celebrity }} that not only loved {{ dirty_task }} but did it {{ huge_number }} times faster.</p>
+					<br>
+    			</span>
+				<input type="submit" value="Start Over" />
+			</form>
+		</div>
+		<div>
+			<form name="myErrorView" novalidate ng-submit="myform.submitted = false; submit();">
+		    	<p class="error" ng-if="myform.submitted && myInputView.male_name.$error.required">A name is required.</p>
     			<p class="error" ng-if="myform.submitted && myInputView.dirty_task.$error.required">A dirty task is required.</p>
     			<p class="error" ng-if="myform.submitted && myInputView.obnoxious_celebrity.$error.required">An obnoxious celebrity is required.</p>
 
@@ -70,19 +98,18 @@
     			<p class="error" ng-if="myform.submitted && myInputView.useless_skill.$error.required">A useless_skill is required.</p>
     			<p class="error" ng-if="myform.submitted && myInputView.adjective.$error.required">A adjective is required.</p>
     			<br>
-    			<input type="submit" value="Generate My Mad Lib" />
-			</form>
-		</div>
-	</section><section>
-		<div ng-show="myform.submitted">
-			<form name="myOutputView" novalidate ng-submit="myform.submitted = false; submit();">
-				<span>
-					<p>{{ male_name }} was a {{ job_title }} who loved technology.  Although he loved parts of his job, he absolutely hated {{ tedious_task }} and {{ dirty_task }}.  So, {{ male_name }} met with his life mentor {{ celebrity }} who told him to learn how to {{ useless_skill }} with Thinkful.  Thinkful didn't offer a course on {{ useless_skill }} so he studied programming instead.</p>
-					<p>What a great decision!  With his new skills, {{ male_name }} built a(n) {{adjective }} robot named {{ obnoxious_celebrity }} that not only loved {{ dirty_task }} but did it {{ huge_number }} times faster.</p>
-					<br>
-    			</span>
-				<input type="submit" value="Start Over" />
-			</form>
+    			<input ng-if="myform.submitted 
+					&& (myInputView.male_name.$error.required
+					|| myInputView.dirty_task.$error.required
+					|| myInputView.obnoxious_celebrity.$error.required
+					|| myInputView.job_title.$error.required
+					|| myInputView.celebrity.$error.required
+					|| myInputView.huge_number.$error.required
+					|| myInputView.tedious_task.$error.required
+					|| myInputView.useless_skill.$error.required
+					|| myInputView.adjective.$error.required)"
+					type="submit" value="Return to Input Screen" />
+    		</form>
 		</div>
 	</section>
 </body>
